@@ -6,7 +6,7 @@ using System.Text;
 
 namespace PBOSharp
 {
-    public class PBOSharpClient
+    public class PBOSharpClient : IDisposable
     {
 
         public event PBOSharpEventHandler onEvent;
@@ -192,6 +192,8 @@ namespace PBOSharp
                 PBOWriter writer = new PBOWriter(fileStream, this);
                 writer.WritePBO(folder, packDirectory, pboFilePath);
 
+                fileStream.Dispose();
+
                 PushOnEvent("Finished PackPBO", EventType.Debug);
             }
             catch (Exception ex)
@@ -235,5 +237,10 @@ namespace PBOSharp
         /// <param name="type"></param>
         internal void PushOnEvent(string message, EventType type)
             => onEvent?.Invoke(new PBOSharpEventArgs(message, type));
+
+        public void Dispose()
+        {
+            
+        }
     }
 }
