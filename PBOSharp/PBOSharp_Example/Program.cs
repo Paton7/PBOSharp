@@ -16,7 +16,7 @@ namespace PBOSharp_Example
             //New PBOToolsClient instance 
             PBOSharpClient client = new PBOSharpClient();
 
-            //Assing EH 
+            //Assign EH 
             client.onEvent += Client_onEvent;
 
             //AnalyzePBO
